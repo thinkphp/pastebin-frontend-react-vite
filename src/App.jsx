@@ -5,17 +5,16 @@ import SnippetView from './pages/SnippetView.jsx';
 export default function App() {
   return (
     <div className="app">
-      <header className="header">
-        <h2>
-          <Link to="/" className="header-link">📋 React Pastebin</Link>
-        </h2>
-      </header>
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/s/:slug" element={<SnippetView />} />
-        </Routes>
-      </main>
+      <div className="brand">
+        <Link to="/" className="brand-mark">
+          past<span>bin</span>
+        </Link>
+        <span className="brand-tag">text sharing, duplicated</span>
+      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/s/:slug" element={<SnippetView />} />
+      </Routes>
     </div>
   );
 }

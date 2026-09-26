@@ -31,45 +31,58 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <h3>Adauga un fragment de cod sau text</h3>
+    <div className="slip-wrap">
+      <div className="slip">
+        <div className="slip-header">
+          <h3>New entry</h3>
+          <span className="slip-number">No. <b>____</b></span>
+        </div>
+        <div className="perforation" />
+        <div className="slip-body">
+          {error && <p className="alert">{error}</p>}
 
-      {error && <p className="alert">{error}</p>}
+          <form onSubmit={handleSubmit}>
+            <div className="field">
+              <label htmlFor="title">Title (optional)</label>
+              <input
+                id="title"
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="config.json, script.py..."
+                maxLength={200}
+              />
+            </div>
 
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="title">Titlu (optional):</label>
-        <input
-          id="title"
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="Ex: config.json sau script.py"
-          maxLength={200}
-        />
+            <div className="field">
+              <label htmlFor="content">Content</label>
+              <textarea
+                id="content"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                placeholder="Paste your code or text here..."
+                maxLength={1000000}
+                required
+              />
+            </div>
 
-        <label htmlFor="content">Continut:</label>
-        <textarea
-          id="content"
-          value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="Lipeste codul sau textul aici..."
-          maxLength={1000000}
-          required
-        />
+            <div className="field">
+              <label htmlFor="expiry">Expires</label>
+              <select id="expiry" value={expiry} onChange={(e) => setExpiry(e.target.value)}>
+                <option value="never">Never</option>
+                <option value="24h">After 24 hours</option>
+                <option value="1h">After 1 hour</option>
+              </select>
+            </div>
 
-        <label htmlFor="expiry">Expirare:</label>
-        <select id="expiry" value={expiry} onChange={(e) => setExpiry(e.target.value)}>
-          <option value="never">Niciodata</option>
-          <option value="24h">Dupa 24 de ore</option>
-          <option value="1h">Dupa 1 ora</option>
-        </select>
-
-        <br /><br />
-
-        <button type="submit" disabled={loading}>
-          {loading ? 'Se creeaza...' : 'Creeaza Link'}
-        </button>
-      </form>
+            <div className="actions">
+              <button type="submit" disabled={loading}>
+                {loading ? 'Filing…' : 'Create entry'}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

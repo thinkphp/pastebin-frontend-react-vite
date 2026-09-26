@@ -15,32 +15,55 @@ export default function SnippetView() {
     return () => { cancelled = true; };
   }, [slug]);
 
-  if (error) return <p className="alert">{error}</p>;
-  if (!snippet) return <p>Se incarca...</p>;
+  if (error) {
+    return (
+      <div className="slip-wrap">
+        <div className="slip">
+          <div className="slip-body">
+            <p className="alert">{error}</p>
+            <Link to="/" className="link-btn">+ new entry</Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!snippet) return <p className="loading-text">Retrieving entry…</p>;
 
   return (
-    <div>
-      <h3>{snippet.title}</h3>
+    <div className="slip-wrap">
+      <div className="slip">
+        <div className="slip-header">
+          <h3>{snippet.title}</h3>
+          <span className="slip-number">No. <b>{snippet.slug}</b></span>
+        </div>
+        <div className="perforation" />
+        <div className="slip-body">
+          <div className="meta-line">
+            <span>filed {new Date(snippet.created_at).toLocaleString()}</span>
+            <span className="dot">·</span>
+            <span>
+              {snippet.expires_at
+                ? `expires ${new Date(snippet.expires_at).toLocaleString()}`
+                : 'never expires'}
+            </span>
+          </div>
 
-      <div className="meta">
-        Creat la: {new Date(snippet.created_at).toLocaleString('ro-RO')}
-        {' | '}
-        {snippet.expires_at
-          ? `Expira la: ${new Date(snippet.expires_at).toLocaleString('ro-RO')}`
-          : 'Expirare: Niciodata'}
+          <pre><code>{snippet.content}</code></pre>
+
+          <div className="slip-footer">
+            <a
+              href={`${import.meta.env.VITE_API_URL || ''}/api/snippets/${snippet.slug}/raw`}
+              className="link-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              view raw
+            </a>
+            <Link to="/" className="link-btn">+ new entry</Link>
+          </div>
+        </div>
       </div>
-
-      <pre><code>{snippet.content}</code></pre>
-
-      <p className="raw-link">
-        <a href={`${import.meta.env.VITE_API_URL || ''}/api/snippets/${snippet.slug}/raw`}  target="_blank"  rel="noopener noreferrer">        
-          📄 Vezi Text Brut / Raw
-        </a>
-      </p>
-
-      <p>
-        <Link to="/">➕ Adauga alt snippet</Link>
-      </p>
     </div>
   );
 }
