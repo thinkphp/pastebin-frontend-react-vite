@@ -6,6 +6,7 @@ export default function SnippetView() {
   const { slug } = useParams();
   const [snippet, setSnippet] = useState(null);
   const [error, setError] = useState('');
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -14,6 +15,20 @@ export default function SnippetView() {
       .catch((err) => { if (!cancelled) setError(err.message); });
     return () => { cancelled = true; };
   }, [slug]);
+
+  const handleCopyLink = async () => {
+
+        try {
+
+          await navigator.clipboard.writeText(window.location.href);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 1500);
+
+        } catch ( err ) {
+
+            console.error("Copy failed!", err);
+        }
+  }
 
   if (error) {
     return (
@@ -52,6 +67,15 @@ export default function SnippetView() {
           <pre><code>{snippet.content}</code></pre>
 
           <div className="slip-footer">
+
+             <button
+               onClick={handleCopyLink}
+               className={`copy-btn ${copied ? 'is-copied' : ''}`}
+               >
+               <span className="copy-btn-icon">{copied ? '✓' : '⧉'}</span>
+               <span className="copy-btn-text">{copied ? 'Copied' : 'Copy link'}</span>
+            </button>
+
             <a
               href={`${import.meta.env.VITE_API_URL || ''}/api/snippets/${snippet.slug}/raw`}
               className="link-btn"

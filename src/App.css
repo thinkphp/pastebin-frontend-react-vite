@@ -1,0 +1,51 @@
+.copy-btn {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+
+  backdrop-filter: blur(8px);
+  color: #e4e4e7;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+}
+.copy-btn:hover {
+
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.copy-btn:active {
+  transform: scale(0.96);
+}
+
+.copy-btn-icon {
+  display: inline-flex;
+  font-size: 1rem;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.copy-btn.is-copied {
+  border-color: rgba(74, 222, 128, 0.4);
+  background: linear-gradient(180deg, rgba(74, 222, 128, 0.15), rgba(74, 222, 128, 0.05));
+  color: #4ade80;
+}
+
+.copy-btn.is-copied .copy-btn-icon {
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.6); }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}

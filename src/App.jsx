@@ -1,6 +1,7 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home.jsx';
 import SnippetView from './pages/SnippetView.jsx';
+import './App.css'
 
 export default function App() {
   return (

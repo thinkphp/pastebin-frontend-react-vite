@@ -257,17 +257,57 @@ button:disabled { opacity: 0.5; cursor: default; transform: none; }
 
 .meta-line .dot { color: var(--rule); }
 
-pre {
+
+.slip-body pre {
+  position: relative;
   margin: 0;
   background: var(--ink);
   color: #E8EAF2;
-  padding: 18px 20px;
-  border-radius: 2px;
+  padding: 40px 20px 20px;
+  border-radius: 10px;
   overflow-x: auto;
   white-space: pre-wrap;
   word-wrap: break-word;
   font-size: 0.88rem;
   line-height: 1.6;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 8px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+/* bara de titlu tip terminal */
+.slip-body pre::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 10px 10px 0 0;
+}
+
+/* cele 3 puncte roșu/galben/verde */
+.slip-body pre::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f56;
+  box-shadow: 
+    18px 0 0 #ffbd2e,
+    36px 0 0 #27c93f;
+}
+
+.slip-body code {
+  display: block;
+  font-family: 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+  tab-size: 2;
 }
 
 .slip-footer {
