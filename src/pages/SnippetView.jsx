@@ -45,7 +45,7 @@ export default function SnippetView() {
 
   if (!snippet) return <p className="loading-text">Retrieving entry…</p>;
 
-  return (
+  return ( 
     <div className="slip-wrap">
       <div className="slip">
         <div className="slip-header">
@@ -84,10 +84,11 @@ export default function SnippetView() {
             >
               view raw
             </a>
-            <Link to="/" className="link-btn">+ new entry</Link>
+            <Link to="/" className="link-btn">+ new entry</Link> 
           </div>
         </div>
-      </div>
+      </div> 
     </div>
+
   );
 }

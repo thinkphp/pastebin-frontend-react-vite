@@ -49,3 +49,17 @@
   60% { transform: scale(1.2); }
   100% { transform: scale(1); }
 }
+
+
+.app-footer {
+  margin-top: auto;
+  padding: 20px 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #ccc;
+}
+
+.app-footer strong {
+  color: #ccc;
+  font-weight: 500;
+}
