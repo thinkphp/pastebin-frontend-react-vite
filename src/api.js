@@ -1,4 +1,8 @@
-const API_BASE = '/api/snippets';
+// In dev local, VITE_API_URL nu e setat -> foloseste ruta relativa /api,
+// care e redirectionata de proxy-ul din vite.config.js catre localhost:4567.
+// In productie (Vercel), setezi VITE_API_URL = https://<backend>.up.railway.app
+const BASE_URL = import.meta.env.VITE_API_URL || '';
+const API_BASE = `${BASE_URL}/api/snippets`;
 
 export async function createSnippet({ title, content, expiry }) {
   const res = await fetch(API_BASE, {

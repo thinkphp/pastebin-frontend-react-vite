@@ -33,7 +33,7 @@ export default function SnippetView() {
       <pre><code>{snippet.content}</code></pre>
 
       <p className="raw-link">
-        <a href={`/api/snippets/${snippet.slug}/raw`} target="_blank" rel="noopener noreferrer">
+        <a href={`${import.meta.env.VITE_API_URL || ''}/api/snippets/${snippet.slug}/raw`}  target="_blank"  rel="noopener noreferrer">        
           📄 Vezi Text Brut / Raw
         </a>
       </p>
