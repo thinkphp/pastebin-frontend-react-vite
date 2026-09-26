@@ -1,4 +1,4 @@
-# React Pastebin (React + Vite + Express + PostgreSQL)
+# React Pastebin (React + Vite + Express + PostgreSQL Supabase)
 
 Port al versiunii Sinatra/SQLite, cu frontend React (Vite) si backend Express + PostgreSQL.
 
